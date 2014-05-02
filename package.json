@@ -1,0 +1,8 @@
+{
+  "name": "Buildlatex",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-less": "^0.11.0"
+  }
+}

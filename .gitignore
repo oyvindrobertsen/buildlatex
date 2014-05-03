@@ -1,6 +1,5 @@
 *.un~
 *.swp
-.css
 
 node_modules/
 lib/*

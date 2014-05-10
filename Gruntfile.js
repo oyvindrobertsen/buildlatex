@@ -3,11 +3,11 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "style.css": "style.less"
+                    './static/css/style.css': './static/css/less/style.less'
                 }
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
-}
+};

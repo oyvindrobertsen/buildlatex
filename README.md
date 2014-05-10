@@ -3,13 +3,20 @@ Buildlatex
 
 A simple Latex-as-a-service, acting as a CI service for latex projects.
 
-For now, we're going for a Node.js based backend, utilising our own node-latex library (Link here).
+For now, we're going for a Node.js based backend, utilising our own [node-latex](https://github.com/oyvindrobertsen/node-latex) library 
 
-## Stack
+## Technologies
 
-* [ExpressJS](http://expressjs.com)
-* [MongoDB](http://mongodb.org)
-* [Mongoose](http://mongoosejs.com)
-* [AngularJS](http://angularjs.org)
+* [Grunt](http://gruntjs.com/)
+* [Bower](http://bower.io/)
+* [ExpressJS](http://expressjs.com/)
+* [Jade](http://jade-lang.com/)
 
-Maybe?
+So far.
+
+## Getting set up
+
+Clone, run `make init` (assumes Node, Bower and Grunt is on the PATH), then `node app.js`.
+
+## Contributing
+[JSHint](http://jshint.com/) all JS.

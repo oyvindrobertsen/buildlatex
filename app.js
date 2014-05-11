@@ -6,9 +6,11 @@ var express = require('express'),           // Base server
 var app = express();
 
 app.set('view engine', 'jade');
+app.set('port', 3000);
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(morgan('dev'));
 
 app.get('/', index.home);
 
-app.listen(3000);
+app.listen(app.get('port'));
+console.log('Express server listening on port http://localhost:' + app.get('port'));

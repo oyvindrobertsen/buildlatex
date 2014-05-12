@@ -1,23 +1,56 @@
-@import "lib/colors/less/_variables.less";
+@import "../../lib/colors/less/_variables";
+@import "../../lib/bootstrap/less/variables.less";
 
-html {
-    background-color: @white;
+body {
+    &, * {
+        font-family: @font-family-serif;
+    }
+
+    background-color: @gray;
     color: @black;
+
+    padding: 1em 0;
 }
 
-div {
-    width: 500px;
-    height: 100px;
-    font-size: 6em;
-    
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-
-    text-align: center;
-    vertical-align:  middle;
-    line-height: 100px; 
+h1 {
+    font-size: 60pt;
+    border-bottom: 1px solid @gray;
 }
+
+.container.iso216 {
+    background-color: @white;
+    box-shadow: 0 3px 6px 0 @black;
+
+}
+
+@media (min-width: @screen-sm-min) {
+    .container.iso216 {
+        height: 1060px; // width is 750px
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .container.iso216 {
+        height: 1371px; // width is 970px
+    }
+}
+
+@media (min-width: @screen-lg-min) {
+    .container.iso216 {
+        height: 1654px; // width is 1170px
+    }
+}
+
+article {
+    position: relative;
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 97.5%;
+
+        border-top: 1px solid @gray;
+        padding: .5em 0;
+    }
+}
+

@@ -1,8 +1,19 @@
 doctype html
-html(lang="en")
-    head
-        title= 'BuildLatex'
-        link(rel='stylesheet', href='/css/style.css')
-    body
-        div
-            | Buildlatex
+html(lang="en", ng-app="buildlatex")
+    include head
+    script.
+        var app = angular.module('buildlatex', []);
+
+        app.controller("ctrl", function($scope) {
+            $scope.hello = "Hey";
+        });
+    body(ng-controller="ctrl")
+        article(class="container iso216")
+            h1 BuildLaTeX
+
+            input(ng-model="hello")
+            p {{ hello }}
+
+            div(style="height: 3em; visibility: hidden;") I am invisible whitespace
+
+            footer fooooooooter

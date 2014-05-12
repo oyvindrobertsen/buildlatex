@@ -5,3 +5,4 @@ node_modules/
 static/lib/
 
 .idea/
+*.iml

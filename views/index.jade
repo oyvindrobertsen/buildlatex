@@ -3,6 +3,11 @@ html(lang="en")
     head
         title= 'BuildLatex'
         link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href='/lib/fontawesome/css/font-awesome.min.css')
     body
         div
             | Buildlatex
+            br
+            p(style='font-size: 0.3em')
+                a(href='/auth' class='button')
+                    i(class='fa fa-github') &nbsp; Sign in with GitHub

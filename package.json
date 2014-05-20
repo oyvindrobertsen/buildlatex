@@ -10,8 +10,9 @@
     "express": "^4.1.2",
     "grunt": "~0.4.2",
     "grunt-contrib-less": "^0.11.0",
-    "node-latex": "oyvindrobertsen/node-latex",
+    "jade": "^1.3.1",
     "morgan": "^1.0.1",
-    "jade": "^1.3.1"
+    "node-latex": "oyvindrobertsen/node-latex",
+    "simple-oauth2": "^0.1.9"
   }
 }

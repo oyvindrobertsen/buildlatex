@@ -57,9 +57,11 @@ router.get('/github-callback', function(req, res) {
         o.method = 'GET';
         rest.getJSON(o, function(statusCode, result) {
             res.statusCode = statusCode;
-            res.send(result);
-        })
-    }
+            res.render('landing.jade', {
+                user: result
+            });
+        });
+    };
 });
 
 exports.authRouter = router;

@@ -53,7 +53,7 @@ router.get('/github-callback', function(req, res) {
         var tokenObj = oauth2.AccessToken.create(result),
             user = new User({accessToken: tokenObj.token.split('&')[0].split('=')[1]}),
             o = new GitHubAPIOptions(user.accessToken);
-        o.path = '/user;
+        o.path = '/user';
         o.method = 'GET';
         rest.getJSON(o, function(statusCode, result) {
             res.statusCode = statusCode;

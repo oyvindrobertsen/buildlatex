@@ -1,0 +1,2 @@
+exports.ID = '<ID Here>';
+exports.secret = '<Secret here>';

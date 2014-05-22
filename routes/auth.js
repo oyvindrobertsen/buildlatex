@@ -1,5 +1,4 @@
 var router = require('express').Router(),
-    User = require('../models').User,
     github = require('../config/github'),
     rest = require('../util/rest');
 
@@ -51,6 +50,7 @@ router.get('/github-callback', function(req, res) {
     rest.getJSON(o, function(statusCode, result) {
       res.statusCode = statusCode;
       res.send(result);
+    });
   };
 });
 

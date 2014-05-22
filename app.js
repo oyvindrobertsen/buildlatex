@@ -1,8 +1,22 @@
 var express = require('express'),           // Base server
     path = require('path'),                 // FS path util
     morgan = require('morgan'),             // Logger for express
+    Bookshelf = require('bookshelf'),        // ORM
     index = require('./routes/index'),      // Index routes
     auth = require('./routes/auth');        // Auth routes
+
+Bookshelf.PG = Bookshelf.initialize({
+  client: 'pg',
+  debug: true,
+  connection: {
+    host: 'localhost',
+    user: '',
+    password: '',
+    database: 'buildlatex',
+    charset: 'utf8'
+  }
+});
+
 
 var app = express();
 

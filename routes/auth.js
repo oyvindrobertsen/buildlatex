@@ -1,17 +1,7 @@
-var mongoose = require('mongoose'),
-    router = require('express').Router(),
+var router = require('express').Router(),
     User = require('../models').User,
     github = require('../config/github'),
     rest = require('../util/rest');
-
-mongoose.connect('mongodb://localhost/buildlatex');
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function() {
-  console.log('Database connection established.');
-});
 
 var oauth2 = require('simple-oauth2')({
   clientID: github.ID,
@@ -26,6 +16,9 @@ var authorization_uri = oauth2.AuthCode.authorizeURL({
   state: 'E09Z79ZPpW'
 });
 
+var getTokenString = function(param) {
+  return param.split('&')[0].split('=')[1];
+}
 function GitHubAPIOptions(token) {
   this.host = 'api.github.com';
   this.port = 443;
@@ -51,16 +44,13 @@ router.get('/github-callback', function(req, res) {
   function saveToken(error, result) {
     if (error) {console.log('Access token error', error.message);}
     var tokenObj = oauth2.AccessToken.create(result),
-        user = new User({accessToken: tokenObj.token.split('&')[0].split('=')[1]}),
-        o = new GitHubAPIOptions(user.accessToken);
+        token = getTokenString(tokenObj.token);
+        o = new GitHubAPIOptions(token);
     o.path = '/user';
     o.method = 'GET';
     rest.getJSON(o, function(statusCode, result) {
       res.statusCode = statusCode;
-      res.render('landing.jade', {
-        user: result
-      });
-    });
+      res.send(result);
   };
 });
 

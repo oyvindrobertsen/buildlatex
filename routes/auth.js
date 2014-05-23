@@ -1,6 +1,7 @@
 var router = require('express').Router(),
     github = require('../config/github'),
-    rest = require('../util/rest');
+    rest = require('../util/rest'),
+    User = require('../models/User').User;
 
 var oauth2 = require('simple-oauth2')({
   clientID: github.ID,
@@ -48,10 +49,18 @@ router.get('/github-callback', function(req, res) {
     o.path = '/user';
     o.method = 'GET';
     rest.getJSON(o, function(statusCode, result) {
+      var user = User.forge({
+        github_id: result.id,
+        username: result.login,
+        email: result.email,
+        avatar_url: result.avatar_url,
+        access_token: token       
+      });
+      user.save();
       res.statusCode = statusCode;
       res.send(result);
     });
-  };
+  }
 });
 
 exports.authRouter = router;

@@ -69,9 +69,8 @@ router.get('/github-callback', function(req, res) {
             });
           }
           user.save();
+          res.redirect('/user/' + user.attributes.username);
         });
-      res.statusCode = statusCode;
-      res.send(result);
     });
   }
 });

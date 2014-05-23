@@ -49,14 +49,27 @@ router.get('/github-callback', function(req, res) {
     o.path = '/user';
     o.method = 'GET';
     rest.getJSON(o, function(statusCode, result) {
-      var user = User.forge({
-        github_id: result.id,
-        username: result.login,
-        email: result.email,
-        avatar_url: result.avatar_url,
-        access_token: token       
-      });
-      user.save();
+      new User({'github_id': result.id})
+        .fetch()
+        .then(function(user) {
+          if (!user) {
+            user = User.forge({
+              github_id: result.id,
+              username: result.login,
+              email: result.email,
+              avatar_url: result.avatar_url,
+              access_token: token
+            });
+          } else {
+            user.set({
+              username: result.login,
+              email: result.email,
+              avatar_url: result.avatar_url,
+              access_token: token
+            });
+          }
+          user.save();
+        });
       res.statusCode = statusCode;
       res.send(result);
     });

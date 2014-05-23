@@ -1,6 +1,8 @@
 var express = require('express'),           // Base server
     path = require('path'),                 // FS path util
     morgan = require('morgan'),             // Logger for express
+    cookieParser = require('cookie-parser'),// Cookie parser
+    session = require('express-session'),   // Session middleware
     Bookshelf = require('bookshelf');       // ORM
 
 Bookshelf.PG = Bookshelf.initialize({
@@ -22,6 +24,8 @@ app.set('view engine', 'jade');
 app.set('port', 3000);
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(session({secret: 'this is super secret', name: 'bl'}));
 
 app.use('/', index.indexRouter);
 

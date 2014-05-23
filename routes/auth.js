@@ -69,10 +69,16 @@ router.get('/github-callback', function(req, res) {
             });
           }
           user.save();
+          req.session.user_id = user.attributes.id;
           res.redirect('/user/' + user.attributes.username);
         });
     });
   }
+});
+
+router.get('/logout', function(req, res) {
+  delete req.session.user_id;
+  res.redirect('/');
 });
 
 exports.authRouter = router;

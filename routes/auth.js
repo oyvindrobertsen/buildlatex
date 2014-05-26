@@ -1,6 +1,7 @@
 var router = require('express').Router(),
     github = require('../config/github'),
     rest = require('../util/rest'),
+    githubOpts = require('../util/github').githubAPIOptions,
     User = require('../models/User').User;
 
 var oauth2 = require('simple-oauth2')({
@@ -12,23 +13,12 @@ var oauth2 = require('simple-oauth2')({
 
 var authorization_uri = oauth2.AuthCode.authorizeURL({
   redirect_uri: 'http://localhost:3000/auth/github-callback',
-  scope: 'user',
+  scope: 'user, public_repo',
   state: 'E09Z79ZPpW'
 });
 
 var getTokenString = function(param) {
   return param.split('&')[0].split('=')[1];
-}
-function GitHubAPIOptions(token) {
-  this.host = 'api.github.com';
-  this.port = 443;
-  this.path = null;
-  this.method = null;
-  this.headers = {
-    'Content-Type': 'application/json',
-    'user-agent': 'buildlatex',
-    'Authorization': 'token ' + token
-  };
 }
 
 router.get('/github-redir', function(req, res) {
@@ -45,7 +35,7 @@ router.get('/github-callback', function(req, res) {
     if (error) {console.log('Access token error', error.message);}
     var tokenObj = oauth2.AccessToken.create(result),
         token = getTokenString(tokenObj.token);
-        o = new GitHubAPIOptions(token);
+        o = new githubOpts(token);
     o.path = '/user';
     o.method = 'GET';
     rest.getJSON(o, function(statusCode, result) {
@@ -70,7 +60,7 @@ router.get('/github-callback', function(req, res) {
           }
           user.save();
           req.session.user_id = user.attributes.id;
-          res.redirect('/user/' + user.attributes.username);
+          res.redirect('/users/' + user.attributes.username);
         });
     });
   }

@@ -16,20 +16,23 @@ Bookshelf.PG = Bookshelf.initialize({
 
 /* Routes */
 var index = require('./routes/index'),
-    auth = require('./routes/auth');
+    auth = require('./routes/auth'),
+    users = require('./routes/users');
 
 var app = express();
 
+app.use(morgan('dev'));
 app.set('view engine', 'jade');
 app.set('port', 3000);
 app.use(express.static(path.join(__dirname, 'static')));
-app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({secret: 'this is super secret', name: 'bl'}));
 
 app.use('/', index.indexRouter);
 
 app.use('/auth', auth.authRouter);
+
+app.use('/users', users.usersRouter);
 
 app.listen(app.get('port'));
 console.log('Express server listening on port http://localhost:' + app.get('port'));

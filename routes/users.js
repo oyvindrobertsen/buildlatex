@@ -1,5 +1,6 @@
 var router = require('express').Router(),
-    githubOpts = require('../util/github'),
+    githubOpts = require('../util/github').githubAPIOptions,
+    rest = require('../util/rest'),
     User = require('../models/User').User;
 
 
@@ -18,7 +19,12 @@ router.param('user', function(req, res, next, user) {
 
 
 router.get('/:user', function(req, res) {
-  res.send(req.user.attributes);
+  var o = new githubOpts(req.user.attributes.access_token);
+  o.path = '/user/repos?type=owner';
+  o.method = 'GET';
+  rest.getJSON(o, function(statusCode, result) {
+    res.send(result);
+  });
 });
 
 exports.usersRouter = router;

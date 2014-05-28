@@ -12,18 +12,20 @@ router.param('user', function(req, res, next, user) {
       if (!u) {
         return next(new Error('User does not exist'));
       }
-      req.user = u;
+      req.user = u.toJSON();
       next();
     });
 });
 
 
 router.get('/:user', function(req, res) {
-  var o = new githubOpts(req.user.attributes.access_token);
+  var ctx = {user: req.user};
+  var o = new githubOpts(req.user.access_token);
   o.path = '/user/repos?type=owner';
   o.method = 'GET';
   rest.getJSON(o, function(statusCode, result) {
-    res.send(result);
+    ctx.repos = result;
+    res.render('user.jade', ctx);
   });
 });
 

@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+  head
+    title='BuildLaTeX | ' + user.username
+    body
+      h1 BuildLaTeX | #{user.username}
+        p
+          li
+            for repo in repos
+              ul=repo.name

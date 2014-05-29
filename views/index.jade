@@ -1,13 +1,24 @@
 doctype html
-html(lang="en")
-    head
-        title= 'BuildLatex'
-        link(rel='stylesheet', href='/css/style.css')
-        link(rel='stylesheet', href='/lib/fontawesome/css/font-awesome.min.css')
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= 'BuildLatex'
+    // Base stylesheet includes
+    link(rel='stylesheet', href='/lib/fontawesome/css/font-awesome.min.css')
+
+    // Page specific stylesheet
+    link(rel='stylesheet', href='/css/main.css')
+    // Header js
+    script(src='/lib/foundation/js/vendor/modernizr.js')
     body
-        div
-            | Buildlatex
-            br
-            p(style='font-size: 0.3em')
-                a(href='/auth/github-redir' class='button')
-                    i(class='fa fa-github') &nbsp; Sign in with GitHub
+      div
+        | Buildlatex
+        br
+        p(style='font-size: 0.3em')
+          a(href='/auth/github-redir' class='button')
+            i(class='fa fa-github') &nbsp; Sign in with GitHub
+      script(src='/lib/foundation/js/vendor/jquery.js')
+      script(src='/lib/foundation/js/foundation.js')
+      script
+        $(document).foundation();

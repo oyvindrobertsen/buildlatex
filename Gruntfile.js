@@ -1,13 +1,18 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    less: {
-      development: {
+    sass: {
+      compile: {
         files: {
-          './static/css/style.css': './static/css/less/style.less'
+          './static/css/main.css': './static/css/scss/main.scss'
+        }
+      },
+      includePaths: {
+        options: {
+          includePaths: ['./static/lib/foundation/scss']
         }
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-sass');
 };

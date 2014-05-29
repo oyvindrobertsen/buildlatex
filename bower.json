@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "colors": "~0.2.0",
-    "fontawesome": "~4.1.0"
+    "fontawesome": "~4.1.0",
+    "foundation": "~5.2.3"
   }
 }

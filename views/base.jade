@@ -1,9 +1,46 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
-    title='BuildLaTeX'
-    
-  body
-    p
-      | Base
-    block content
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title
+      | BuildLaTeX
+      block title
+    // Base stylesheet includes
+    link(rel='stylesheet', href='/lib/fontawesome/css/font-awesome.min.css')
+
+    // Page specific stylesheet
+    link(rel='stylesheet', href='/css/base.css')
+    // Header js
+    script(src='/lib/foundation/js/vendor/modernizr.js')
+    block include
+    body
+      nav.top-bar(data-topbar)
+        ul.title-area
+          li.name
+            h1
+              a(href='/') BuildLaTeX
+          li(class='toggle-topbar')
+            a(href='#')
+              | Menu
+        section.top-bar-section
+          ul.left
+            li
+              a(href='/')
+                | Home
+          ul.right
+            li.has-dropdown
+              a(href='#')
+                = user.username
+              ul.dropdown
+                li
+                  a(href='/users/' + user.username)
+                    | Settings
+                li
+                  a(href='/auth/logout')
+                    | Logout
+      block content
+    script(src='/lib/foundation/js/vendor/jquery.js')
+    script(src='/lib/foundation/js/foundation.js')
+    script.
+      $(document).foundation();

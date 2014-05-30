@@ -19,7 +19,7 @@ var authorization_uri = oauth2.AuthCode.authorizeURL({
 
 var getTokenString = function(param) {
   return param.split('&')[0].split('=')[1];
-}
+};
 
 router.get('/github-redir', function(req, res) {
   res.redirect(authorization_uri);

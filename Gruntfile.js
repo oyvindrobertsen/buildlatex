@@ -3,7 +3,8 @@ module.exports = function(grunt) {
     sass: {
       compile: {
         files: {
-          './static/css/main.css': './static/css/scss/main.scss'
+          './static/css/main.css': './static/css/scss/main.scss',
+          './static/css/base.css': './static/css/scss/base.scss'
         }
       },
       includePaths: {

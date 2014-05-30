@@ -1,0 +1,13 @@
+@import 'settings';
+
+@import '../../lib/foundation/scss/normalize';
+
+@import '../../lib/foundation/scss/foundation';
+
+.top-bar {
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

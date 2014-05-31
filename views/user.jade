@@ -18,6 +18,6 @@ block append content
             td
               = repo.name
             td
-              a(href='#', class='button tiny')
-                | Enable
-
+              input(type='checkbox', id='toggle_' + repo.name, class='toggle')
+              label(for='toggle_' + repo.name)
+                | &nbsp;

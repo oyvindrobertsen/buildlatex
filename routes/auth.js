@@ -60,7 +60,7 @@ router.get('/github-callback', function(req, res) {
           }
           user.save();
           req.session.user_id = user.attributes.id;
-          res.redirect('/users/' + user.attributes.username);
+          res.redirect('/settings');
         });
     });
   }

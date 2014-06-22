@@ -35,4 +35,5 @@ app.use('/auth', auth.authRouter);
 app.use('/users', users.usersRouter);
 
 app.listen(app.get('port'));
-console.log('Express server listening on port http://localhost:' + app.get('port'));
+console.log('Express server listening on port http://localhost:' +
+            app.get('port'));

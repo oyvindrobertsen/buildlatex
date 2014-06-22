@@ -3,6 +3,7 @@
 
 node_modules/
 static/lib/*
+static/css/*.css
 
 data/*
 config/github.js

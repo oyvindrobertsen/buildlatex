@@ -4,17 +4,14 @@ var router = require('express').Router(),
 
 router.get('', function(req, res) {
   if (req.session.user_id) {
-    new User({id: req.session.user_id})
-      .fetch()
-      .then(function(u) {
-        if (!u) {
-          throw Error('No user with user_id');
-        }
-        res.redirect('/users/' + u.attributes.username);
-      });
+    res.redirect('/settings');
   } else {
     res.render('index.jade');
   }
+});
+
+router.get('/settings', ensureAuth, function(req, res) {
+  res.send('Settings page');
 });
 
 exports.indexRouter = router;

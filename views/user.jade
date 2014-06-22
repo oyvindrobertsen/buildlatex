@@ -3,21 +3,21 @@ block append title
   |  | #{user.username}
 block append content
   .row
-    div(class='small-12 large-8 small-centered columns')
+    div(class='small-12 large-10 small-centered columns')
       h3.text-center Your repositories
       table(style='width:100%')
         thead
           tr
             th
-              | Repo name
+              | Repositories
             th
-              | Enabled
-        tbody  
+              | Status
+        tbody
         each repo in repos
           tr
             td
               = repo.name
-            td
+            //td
               input(type='checkbox', id='toggle_' + repo.name, class='toggle')
               label(for='toggle_' + repo.name)
                 | &nbsp;

@@ -1,4 +1,5 @@
 var Bookshelf = require('bookshelf').PG;
+var Promise = require('bluebird');
 
 Bookshelf.knex.schema.hasTable('b_user').then(function(exists) {
   if (!exists) {
@@ -19,4 +20,17 @@ Bookshelf.knex.schema.hasTable('b_user').then(function(exists) {
 exports.User = Bookshelf.Model.extend({
   tableName: 'b_user',
   hasTimestamps: true
+}, {
+  findUserByUsername: Promise.method(function(user) {
+    if (!user) {
+      throw new Error('Username required.');
+    }
+    return new this({username: user}).fetch();
+  }),
+  findUserByUserId: Promise.method(function(userId) {
+    if (!userId) {
+      throw new Error('User ID required.');
+    }
+    return new this({id: userId}).fetch();
+  })
 });

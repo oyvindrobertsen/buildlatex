@@ -6,15 +6,13 @@ var router = require('express').Router(),
 
 router.param('user', function(req, res, next, user) {
   // TODO: Add regex to check correct format of username
-  new User({username: user})
-    .fetch()
-    .then(function(u) {
-      if (!u) {
-        return next(new Error('User does not exist'));
-      }
-      req.user = u.toJSON();
-      next();
-    });
+  User.findUserByUsername(user).then(function(u) {
+    if (!u) {
+      return next(new Error('User does not exist'));
+    }
+    req.user = u.toJSON();
+    next();
+  });
 });
 
 
